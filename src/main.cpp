@@ -2,8 +2,6 @@
 #include <Arduino.h>
 #include <telnet.h>
 #include <ota.h>
-#include <motor.h>
-#include <temp.h>
 #include <net.h>
 
 void setup() {
