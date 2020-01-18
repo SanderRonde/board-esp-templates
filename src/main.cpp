@@ -9,7 +9,7 @@ void setup() {
 	Serial.println("Booting");
 
 	// Setup telnet
-	Telnet::setup("temp-board");
+	Telnet::setup("TODO:");
 
 	// Setup OTA and wait
 	OTA::setup();
