@@ -12,6 +12,8 @@ using namespace std;
 namespace Net {
 	String req(const char* host, int port, const char* path);
 
+	String req_auth(const char* host, int port, const char* path);
+
 	void setup();
 
 	void await_wifi();
