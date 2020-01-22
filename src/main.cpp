@@ -1,5 +1,6 @@
 #include <ArduinoOTA.h>
 #include <Arduino.h>
+#include <config.h>
 #include <telnet.h>
 #include <ota.h>
 #include <net.h>
@@ -9,7 +10,7 @@ void setup() {
 	Serial.println("Booting");
 
 	// Setup telnet
-	Telnet::setup("TODO:");
+	Telnet::setup(NAME);
 
 	// Setup OTA and wait
 	OTA::setup();
