@@ -5,7 +5,7 @@
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
 
-#include <secrets.h>
+#include <ota_secrets.h>
 #include <net.h>
 
 using namespace std;
