@@ -20,6 +20,7 @@ String ipToString(IPAddress ip){
 ESP8266WiFiMulti WiFiMulti;
 
 namespace Net {
+	WiFiClient client;
 	String req(const char* host, int port, const char* path) {
 		// wait for WiFi connection
 		await_wifi();
@@ -27,8 +28,15 @@ namespace Net {
 		String result = "?";
 
 		HTTPClient http;
+		if (!client.connect(host, port))
+		{
+			Serial.println("connection failed");
+			return "";
+		}
+
 		http.setTimeout(2000);
-		http.begin(host, port, path);
+		String url = "http://" + String(host) + String(path);
+		http.begin(client, url.c_str());
 		http.addHeader("Content-Type", "text/plain");
 
 		String body = "";
@@ -54,8 +62,15 @@ namespace Net {
 		String result = "?";
 
 		HTTPClient http;
+		if (!client.connect(host, port))
+		{
+			Serial.println("connection failed");
+			return "";
+		}
+
 		http.setTimeout(2000);
-		http.begin(host, port, path);
+		String url = "http://" + String(host) + String(path);
+		http.begin(client, url.c_str());
 		http.addHeader("Content-Type", "application/json");
 
 		String data = String("{\"auth\": \"");
