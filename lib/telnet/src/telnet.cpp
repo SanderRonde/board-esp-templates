@@ -19,7 +19,9 @@ namespace Telnet {
 		client.write(_name);
 		client.write("\n");
 		client.write("Hi\n");
+		#ifdef ESP8266
 		client.write(("Reset reason: " + ESP.getResetReason() + "\n").c_str());
+		#endif
 	}
 
 	void setup(const char* name) {
@@ -34,7 +36,9 @@ namespace Telnet {
 	unsigned long last_connect = millis();
 	void loop() {
 		if (millis() - last_connect > RETRY_TIME * 1000) {
+			#ifdef ESP8266
 			client.keepAlive();
+			#endif
 			if (!client.connected()) {
 				connect();
 			}

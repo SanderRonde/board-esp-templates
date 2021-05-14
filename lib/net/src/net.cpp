@@ -1,8 +1,5 @@
 #include <string.h>
 
-#include <ESP8266WiFi.h>
-#include <ESP8266WiFiMulti.h>
-#include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
 
 #include <net_secrets.h>
@@ -17,7 +14,12 @@ String ipToString(IPAddress ip){
 	return s;
 }
 
-ESP8266WiFiMulti WiFiMulti;
+#ifdef ESP8266
+ESP8266WiFiMulti wifi;
+#endif
+#ifdef ESP32
+WiFiMulti wifi;
+#endif
 
 namespace Net {
 	WiFiClient client;
@@ -107,13 +109,13 @@ namespace Net {
 		}
 
 		WiFi.mode(WIFI_STA);
-		WiFiMulti.addAP(WIFI_SSID, WIFI_PW);
+		wifi.addAP(WIFI_SSID, WIFI_PW);
 
 		_setup = true;
 	}
 
 	void await_wifi() {
-		while (WiFiMulti.run() != WL_CONNECTED) {
+		while (wifi.run() != WL_CONNECTED) {
 			delay(1000);
 		}
 	}
