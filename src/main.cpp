@@ -8,7 +8,7 @@
 
 void setup()
 {
-	Main::connect(NAME).c_str(), OTA_PW, WIFI_SSID, WIFI_PW);
+	Main::connect(NAME.c_str(), OTA_PW, WIFI_SSID, WIFI_PW);
 	Movement::setup();
 	Main::connect_done();
 }
