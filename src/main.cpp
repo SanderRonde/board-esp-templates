@@ -1,33 +1,20 @@
-#include <ArduinoOTA.h>
-#include <Arduino.h>
-#include <config.h>
-#include <telnet.h>
-#include <ota.h>
-#include <net.h>
+#include "lib-includes.h"
+#include "lib-telnet.h"
+#include "lib-main.h"
+#include "lib-ota.h"
+#include "secrets.h"
+#include "string.h"
+#include "config.h"
 
-void setup() {
-	Serial.begin(115200);
-	Serial.println("Booting");
-
-	// Setup telnet
-	Telnet::setup(NAME);
-
-	// Setup OTA and wait
-	OTA::setup();
-	LOGN("Booted. Waiting for possible OTAs");
-	OTA::wait_for_otas();
-	LOGN("Stopped waiting");
-
-	// Setup the rest
-	// TODO:
-
-	// Done
-	LOGN("Booted");
+void setup()
+{
+	Main::connect(NAME).c_str(), OTA_PW, WIFI_SSID, WIFI_PW);
+	Movement::setup();
+	Main::connect_done();
 }
 
-void loop() {
+void loop()
+{
 	OTA::loop();
 	Telnet::loop();
-	
-	//TODO:
 }
