@@ -9,7 +9,7 @@
 void setup()
 {
 	Main::connect(NAME, OTA_PW, WIFI_SSID, WIFI_PW);
-	Movement::setup();
+	// TODO: setup
 	Main::connect_done();
 }
 
@@ -17,4 +17,6 @@ void loop()
 {
 	OTA::loop();
 	Telnet::loop();
+	
+	// TODO: loop
 }
