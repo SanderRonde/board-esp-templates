@@ -5,6 +5,7 @@
 #include "secrets.h"
 #include "string.h"
 #include "config.h"
+#include "hack.h"
 
 void setup()
 {
