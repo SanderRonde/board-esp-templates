@@ -9,7 +9,8 @@
 
 void setup()
 {
-	Main::connect(NAME, OTA_PW, WIFI_SSID, WIFI_PW);
+	Main::add_ap(WIFI_SSID, WIFI_PW);
+	Main::connect(NAME, OTA_PW, TELNET_IP, TELNET_PORT);
 	// TODO: setup
 	Main::connect_done();
 }
